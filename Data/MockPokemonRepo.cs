@@ -12,16 +12,16 @@ namespace PokemonAPI.Data
         {
             var pokemons = new List<Pokemon>
             {
-                new Pokemon { Id = 0, Name = "Pikachu", Type = new List<string> { "Eletric" }, Effective = new List<string> { "Water", "Flying" }, Local = "Kanto" },
-                new Pokemon { Id = 1, Name = "Raichu", Type = new List<string> { "Eletric" }, Effective = new List<string> { "Water", "Flying" }, Local = "Kanto" },
-                new Pokemon { Id = 2, Name = "Pichu", Type = new List<string> { "Eletric" }, Effective = new List<string> { "Water", "Flying" }, Local = "Kanto" }
+                new Pokemon { Id = 0, Name = "Pikachu", Local = "Kanto" },
+                new Pokemon { Id = 1, Name = "Raichu", Local = "Kanto" },
+                new Pokemon { Id = 2, Name = "Pichu", Local = "Kanto" }
             };
             return pokemons;
         }
 
         public Pokemon GetPokemonById(int Id)
         {
-            return new Pokemon { Id = 0, Name = "Pikachu", Type = new List<string> { "Eletric" }, Effective = new List<string> { "Water", "Flying" }, Local = "Kanto" };
+            return new Pokemon { Id = 2, Name = "Pichu", Local = "Kanto" };
         }
     }
 }

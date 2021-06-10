@@ -22,6 +22,7 @@ namespace PokemonAPI.Controllers
             _repository = repository;
 
         }
+
         //GET Pokemon
         [HttpGet]
         public ActionResult<IEnumerable<Pokemon>> GetAllPokemons()
