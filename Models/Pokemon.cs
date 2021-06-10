@@ -7,10 +7,10 @@ namespace PokemonAPI.Models
 {
     public class Pokemon
     {
-        public int ID { get; set; }
+        public int Id { get; set; }
         public String Name { get; set; }
-        public String Type { get; set; }
+        public List<String> Type { get; set; }
         public List<String> Effective { get; set; }
-
+        public String Local { get; set; }
     }
 }
