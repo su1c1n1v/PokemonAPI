@@ -9,7 +9,7 @@ using PokemonAPI.Data;
 namespace PokemonAPI.Migrations
 {
     [DbContext(typeof(PokemonContext))]
-    [Migration("20210610203233_InitialMigration")]
+    [Migration("20210611165219_InitialMigration")]
     partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -28,10 +28,13 @@ namespace PokemonAPI.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Local")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
 
                     b.HasKey("Id");
 

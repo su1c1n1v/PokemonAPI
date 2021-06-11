@@ -16,6 +16,7 @@
 - "dotnet toll install --global dotnet-ef" => to install the "dotnet-ef"
 - "dotnet ef migrations add InitialMigration" => to add a new migration;
 - "ef migrations remove" => to remove a migration; 
+- "dotnet ef database update" => create the database;
 ---
 ```diff
  This project it was create only to pratice .NET.

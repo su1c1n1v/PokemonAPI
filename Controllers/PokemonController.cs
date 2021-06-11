@@ -16,7 +16,6 @@ namespace PokemonAPI.Controllers
 
         private readonly IPokemonRepo _repository;
 
-
         public PokemonController(IPokemonRepo repository)
         {
             _repository = repository;

@@ -12,8 +12,8 @@ namespace PokemonAPI.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(nullable: true),
-                    Local = table.Column<string>(nullable: true)
+                    Name = table.Column<string>(maxLength: 100, nullable: false),
+                    Local = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
                 {

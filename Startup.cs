@@ -28,7 +28,11 @@ namespace PokemonAPI
         {
             services.AddDbContext<PokemonContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("PokemonConnection")));
             services.AddControllers();
+
+            //Mock demonstration
             services.AddScoped<IPokemonRepo, MockPokemonRepo>();
+            //SQL
+            services.AddScoped<IPokemonRepo, SqlPokemonRepo>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
