@@ -15,6 +15,16 @@ namespace PokemonAPI.Data
             _context = context;
         }
 
+        public void CreatePokemon(Pokemon pkm)
+        {
+            if(pkm == null)
+            {
+                throw new ArgumentNullException(nameof(pkm));
+            }
+
+            _context.Pokemons.Add(pkm);
+        }
+
         public IEnumerable<Pokemon> GetAllPokemons()
         {
             return _context.Pokemons.ToList();
@@ -23,6 +33,11 @@ namespace PokemonAPI.Data
         public Pokemon GetPokemonById(int Id)
         {
             return _context.Pokemons.FirstOrDefault(temp => temp.Id.Equals(Id));
+        }
+
+        public bool SaveChanges()
+        {
+            return (_context.SaveChanges() >= 0);
         }
     }
 }

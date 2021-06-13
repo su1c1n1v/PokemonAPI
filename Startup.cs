@@ -30,9 +30,11 @@ namespace PokemonAPI
             services.AddControllers();
 
             //Mock demonstration
-            services.AddScoped<IPokemonRepo, MockPokemonRepo>();
+            //services.AddScoped<IPokemonRepo, MockPokemonRepo>();
             //SQL
             services.AddScoped<IPokemonRepo, SqlPokemonRepo>();
+
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

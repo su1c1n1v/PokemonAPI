@@ -1,5 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 using PokemonAPI.Data;
+using PokemonAPI.Dtos;
 using PokemonAPI.Models;
 using System;
 using System.Collections.Generic;
@@ -15,27 +17,45 @@ namespace PokemonAPI.Controllers
     {
 
         private readonly IPokemonRepo _repository;
+        private readonly IMapper _mapper;
 
-        public PokemonController(IPokemonRepo repository)
+        public PokemonController(IPokemonRepo repository, IMapper mapper)
         {
             _repository = repository;
-
+            _mapper = mapper;
         }
 
         //GET Pokemon
         [HttpGet]
-        public ActionResult<IEnumerable<Pokemon>> GetAllPokemons()
+        public ActionResult<IEnumerable<PokemonReadDto>> GetAllPokemons()
         {
             var pokemonsItems = _repository.GetAllPokemons();
-            return Ok(pokemonsItems);
+            var pokemonsDto = _mapper.Map<IEnumerable<PokemonReadDto>>(pokemonsItems);
+            return Ok(pokemonsDto);
         }
 
-        //GET Pokemon/{id}
+        //GET /Pokemon/{id}
         [HttpGet("{id}")]
-        public ActionResult<Pokemon> GetPokemonById(int id)
+        public ActionResult<PokemonReadDto> GetPokemonById(int id)
         {
             var pokemonItem = _repository.GetPokemonById(id);
-            return Ok(pokemonItem);
+            if (pokemonItem != null)
+            {
+                return Ok(_mapper.Map<PokemonReadDto>(pokemonItem));
+            }
+            return NotFound();
         }
+
+        [HttpPost]
+        public ActionResult<PokemonReadDto> CreatePokemon(PokemonCreateDto pokemonCreateDto)
+        {
+            var pokemonModel = _mapper.Map<Pokemon>(pokemonCreateDto);
+            _repository.CreatePokemon(pokemonModel);
+            _repository.SaveChanges();
+            var pokemonReadDto = _mapper.Map<PokemonReadDto>(pokemonModel);
+
+            return Ok(pokemonReadDto);
+        }
+
     }
 }

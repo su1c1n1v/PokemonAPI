@@ -8,6 +8,11 @@ namespace PokemonAPI.Data
 {
     public class MockPokemonRepo : IPokemonRepo
     {
+        public void CreatePokemon(Pokemon pkm)
+        {
+            throw new NotImplementedException();
+        }
+
         public IEnumerable<Pokemon> GetAllPokemons()
         {
             var pokemons = new List<Pokemon>
@@ -22,6 +27,11 @@ namespace PokemonAPI.Data
         public Pokemon GetPokemonById(int Id)
         {
             return new Pokemon { Id = 2, Name = "Pichu", Local = "Kanto" };
+        }
+
+        public bool SaveChanges()
+        {
+            throw new NotImplementedException();
         }
     }
 }

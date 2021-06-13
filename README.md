@@ -11,6 +11,7 @@
 - Microsoft.EntityFrameworkCore;
 - Microsoft.EntityFrameworkCore.Design;
 - Microsoft.EntityFrameworkCore.SqlServer;
+- AutoMapper.Extensions.Microsoft.DependencyInjection;
 ---
 #### Migrations
 - "dotnet toll install --global dotnet-ef" => to install the "dotnet-ef"

@@ -14,6 +14,10 @@ namespace PokemonAPI.Data
         //Get a pokemon by it ID
         Pokemon GetPokemonById(int Id);
 
+        //Create a new pokemon to the DB
+        void CreatePokemon(Pokemon pkm);
 
+        //Save the thinks added in the DB
+        bool SaveChanges();
     }
 }
