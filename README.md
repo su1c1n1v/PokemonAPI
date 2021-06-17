@@ -23,5 +23,6 @@
 - "dotnet ef database update" => create the database;
 ---
 ```diff
-This project was made with the [course](https://youtu.be/fmvcAzHpsk8).
+ This project it was create only to pratice .NET.
  ```
+Credits: [course](https://youtu.be/fmvcAzHpsk8)
