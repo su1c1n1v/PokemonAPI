@@ -39,5 +39,10 @@ namespace PokemonAPI.Data
         {
             return (_context.SaveChanges() >= 0);
         }
+
+        public void UpdatePokemon(Pokemon pkm)
+        {
+
+        }
     }
 }

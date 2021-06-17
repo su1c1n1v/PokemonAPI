@@ -19,5 +19,8 @@ namespace PokemonAPI.Data
 
         //Save the thinks added in the DB
         bool SaveChanges();
+
+        //Update a atribute of the pokemon
+        void UpdatePokemon(Pokemon pkm);
     }
 }

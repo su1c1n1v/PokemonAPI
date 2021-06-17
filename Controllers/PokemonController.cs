@@ -57,5 +57,20 @@ namespace PokemonAPI.Controllers
             return CreatedAtRoute(nameof(GetPokemonById), new { Id = pokemonModel.Id}, pokemonReadDto);
         }
 
+        [HttpPut("id")]
+        public ActionResult UpdatePokemon(int id, PokemonUpdateDto pokemonUpdateDto)
+        {
+            var pokemonModelFromRepo = _repository.GetPokemonById(id);
+            if(pokemonModelFromRepo == null)
+            {
+                return NotFound();
+            }
+            //It is updating the "pokemonModelFromRepo" using the dates from "pokemonUpdateDto"
+            _mapper.Map(pokemonUpdateDto, pokemonModelFromRepo);
+            _repository.UpdatePokemon(pokemonModelFromRepo);//good pratice to call the method (nether this method dont have anything)
+            _repository.SaveChanges();
+            return NoContent();
+        }
+
     }
 }

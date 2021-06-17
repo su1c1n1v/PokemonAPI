@@ -33,5 +33,10 @@ namespace PokemonAPI.Data
         {
             throw new NotImplementedException();
         }
+
+        public void UpdatePokemon(Pokemon pkm)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
