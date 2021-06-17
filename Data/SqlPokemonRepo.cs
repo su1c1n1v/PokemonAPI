@@ -25,6 +25,15 @@ namespace PokemonAPI.Data
             _context.Pokemons.Add(pkm);
         }
 
+        public void DeletePokemon(Pokemon pkm)
+        {
+            if (pkm == null)
+            {
+                throw new ArgumentNullException(nameof(pkm));
+            }
+            _context.Pokemons.Remove(pkm);
+        }
+
         public IEnumerable<Pokemon> GetAllPokemons()
         {
             return _context.Pokemons.ToList();

@@ -5,13 +5,16 @@
 - How to build a API in .NET;
 ---
 #### The technologies
-- .NET Core
+- C#;
+- .NET Core.
 ---
 #### Dependencies
 - Microsoft.EntityFrameworkCore;
 - Microsoft.EntityFrameworkCore.Design;
 - Microsoft.EntityFrameworkCore.SqlServer;
 - AutoMapper.Extensions.Microsoft.DependencyInjection;
+- Microsoft.AspNetCore.JsonPatch;
+- Microsoft.AspNetCore.Mvc.NewtonsoftJson;
 ---
 #### Migrations
 - "dotnet toll install --global dotnet-ef" => to install the "dotnet-ef"
@@ -20,5 +23,5 @@
 - "dotnet ef database update" => create the database;
 ---
 ```diff
- This project it was create only to pratice .NET.
+This project was made with the [course](https://youtu.be/fmvcAzHpsk8).
  ```

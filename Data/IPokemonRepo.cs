@@ -22,5 +22,8 @@ namespace PokemonAPI.Data
 
         //Update a atribute of the pokemon
         void UpdatePokemon(Pokemon pkm);
+
+        //Delete a pokemon in the DB
+        void DeletePokemon(Pokemon pkm);
     }
 }

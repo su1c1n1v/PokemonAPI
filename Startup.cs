@@ -12,6 +12,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Newtonsoft.Json.Serialization;
 
 namespace PokemonAPI
 {
@@ -27,7 +28,11 @@ namespace PokemonAPI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<PokemonContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("PokemonConnection")));
-            services.AddControllers();
+
+            //Setup the newtonsoftJson
+            services.AddControllers().AddNewtonsoftJson(Temp => {
+                Temp.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+            } );
 
             //Mock demonstration
             //services.AddScoped<IPokemonRepo, MockPokemonRepo>();
@@ -35,6 +40,7 @@ namespace PokemonAPI
             services.AddScoped<IPokemonRepo, SqlPokemonRepo>();
 
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

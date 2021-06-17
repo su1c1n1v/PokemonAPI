@@ -13,6 +13,11 @@ namespace PokemonAPI.Data
             throw new NotImplementedException();
         }
 
+        public void DeletePokemon(Pokemon pkm)
+        {
+            throw new NotImplementedException();
+        }
+
         public IEnumerable<Pokemon> GetAllPokemons()
         {
             var pokemons = new List<Pokemon>

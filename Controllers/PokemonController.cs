@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using PokemonAPI.Data;
 using PokemonAPI.Dtos;
@@ -35,7 +36,7 @@ namespace PokemonAPI.Controllers
         }
 
         //GET /Pokemon/{id}
-        [HttpGet("{id}",Name = "GetPokemonById")]
+        [HttpGet("{id}", Name = "GetPokemonById")]
         public ActionResult<PokemonReadDto> GetPokemonById(int id)
         {
             var pokemonItem = _repository.GetPokemonById(id);
@@ -54,14 +55,14 @@ namespace PokemonAPI.Controllers
             _repository.SaveChanges();
             var pokemonReadDto = _mapper.Map<PokemonReadDto>(pokemonModel);
 
-            return CreatedAtRoute(nameof(GetPokemonById), new { Id = pokemonModel.Id}, pokemonReadDto);
+            return CreatedAtRoute(nameof(GetPokemonById), new { Id = pokemonModel.Id }, pokemonReadDto);
         }
 
-        [HttpPut("id")]
+        [HttpPut("{id}")]
         public ActionResult UpdatePokemon(int id, PokemonUpdateDto pokemonUpdateDto)
         {
             var pokemonModelFromRepo = _repository.GetPokemonById(id);
-            if(pokemonModelFromRepo == null)
+            if (pokemonModelFromRepo == null)
             {
                 return NotFound();
             }
@@ -72,5 +73,38 @@ namespace PokemonAPI.Controllers
             return NoContent();
         }
 
+        [HttpPatch("{id}")]
+        public ActionResult PartialPokemonUpdate(int id, JsonPatchDocument<PokemonUpdateDto> patchDocument)
+        {
+            var pokemonModelFromRepo = _repository.GetPokemonById(id);
+            if (pokemonModelFromRepo == null)
+            {
+                return NotFound();
+            }
+            var pokemonToPatch = _mapper.Map<PokemonUpdateDto>(pokemonModelFromRepo);
+            patchDocument.ApplyTo(pokemonToPatch, ModelState);
+            if (!TryValidateModel(pokemonToPatch))
+            {
+                return ValidationProblem(ModelState);
+            }
+
+            _mapper.Map(pokemonToPatch, pokemonModelFromRepo);
+            _repository.UpdatePokemon(pokemonModelFromRepo);//good pratice to call the method (nether this method dont have anything)
+            _repository.SaveChanges();
+            return NoContent();
+        }
+
+        [HttpDelete("{id}")]
+        public ActionResult DeletePokemon(int id)
+        {
+            var pokemonModelFromRepo = _repository.GetPokemonById(id);
+            if (pokemonModelFromRepo == null)
+            {
+                return NotFound();
+            }
+            _repository.DeletePokemon(pokemonModelFromRepo);
+            _repository.SaveChanges();
+            return NoContent();
+        }
     }
 }
