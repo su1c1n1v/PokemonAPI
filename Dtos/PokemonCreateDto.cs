@@ -17,3 +17,4 @@ namespace PokemonAPI.Dtos
         public String Local { get; set; }
     }
 }
+

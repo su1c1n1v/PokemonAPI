@@ -35,7 +35,7 @@ namespace PokemonAPI.Controllers
         }
 
         //GET /Pokemon/{id}
-        [HttpGet("{id}")]
+        [HttpGet("{id}",Name = "GetPokemonById")]
         public ActionResult<PokemonReadDto> GetPokemonById(int id)
         {
             var pokemonItem = _repository.GetPokemonById(id);
@@ -54,7 +54,7 @@ namespace PokemonAPI.Controllers
             _repository.SaveChanges();
             var pokemonReadDto = _mapper.Map<PokemonReadDto>(pokemonModel);
 
-            return Ok(pokemonReadDto);
+            return CreatedAtRoute(nameof(GetPokemonById), new { Id = pokemonModel.Id}, pokemonReadDto);
         }
 
     }
